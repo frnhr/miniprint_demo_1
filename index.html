@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#demo_form').on('submit', function(event){
+                var $this = $(this);
+                var $name = $this.find('input[name=name]');
+                var $agree = $this.find('input[name=agreed]');
+                $name.parent().removeClass('validation_error');
+                $agree.parent().removeClass('validation_error');
+                if (!$name.val() || !$agree.is(':checked')) {
+                    if (!$name.val()) {
+                        $name.parent().addClass('validation_error');
+                    }
+                    if (!$agree.is(':checked')) {
+                        $agree.parent().addClass('validation_error');
+                    }
+                    alert("Please check the form");
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        })
+    </script>
+    <style type="text/css">
+        .validation_error {
+            border: 1px dotted red;
+        }
+    </style>
+</head>
+<body>
+<h1>Here be demo client no. 1</h1>
+
+<form action="/thanks.html" method="POST" id="demo_form">
+    <div>
+        <label>
+            Give us your name!
+            <input type="text" name="name" />
+        </label>
+    </div>
+    <div>
+        <script src="http://localhost:8000/remote/2/script.js"></script><span id="miniprint_container"></span>
+    </div>
+    <input type="submit" value="Register" />
+</form>
+</body>
+</html>
+
